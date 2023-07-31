@@ -1,5 +1,87 @@
+@font-face {
+  font-family: IRANYekan-Bold;
+  src: url("../../public/assets/font/IranYekan/webFont/IRANYekanWebExtraBold.ttf");
+  src: url("../../public/assets/font/IranYekan/webFont/IRANYekanWebExtraBold.woff");
+}
+
+@font-face {
+  font-family: IRANYekan-Medium;
+  src: url("../../public/assets/font/IranYekan/webFont/IRANYekanWebMedium.ttf");
+  src: url("../../public/assets/font/IranYekan/webFont/IRANYekanWebMedium.woff");
+}
+
 .sidebar {
   width: 268px;
   height: 100vh;
   background-color: #fafafa;
+  position: fixed;
+  right: 0;
+  overflow: auto;
+}
+
+.sidebar .logo {
+  display: flex;
+  justify-content: flex-end;
+  margin: 1rem 1.5rem 0 0;
+}
+
+.sidebar .sidebar-body {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin: 5rem 1.5rem 5rem 0;
+}
+
+.sidebar .sidebar-body .sidebar-body_active {
+  font-family: IRANYekan-Bold;
+  background-color: #fff;
+  padding: 0.5rem 0;
+}
+
+.sidebar .sidebar-body div {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1rem;
+  font-family: IRANYekan-Medium;
+}
+
+.sidebar .sidebar-body .sidebar-body_submenu {
+  display: flex;
+  align-items: flex-start;
+}
+
+.sidebar .sidebar-body .sidebar-body_submenu div {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  cursor: pointer;
+}
+
+.sidebar .sidebar-body .sidebar-body_submenu div div a {
+  color: #909090;
+  font-size: 14px;
+}
+
+.sidebar .sidebar-body div a {
+  text-decoration: none;
+  color: #000;
+  font-size: 1rem;
+}
+
+.sidebar .setting {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1rem;
+  margin: 0 1.5rem 2rem 0;
+}
+
+.sidebar .setting a {
+  text-decoration: none;
+  color: #000;
+  font-size: 1rem;
+  font-family: IRANYekan-Medium;
 }
