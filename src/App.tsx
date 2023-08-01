@@ -10,7 +10,7 @@ import Header from "./components/Header";
 // PAGES
 import Home from "./pages/Home";
 import BlackList from "./pages/BlackList";
-import Chart from "./pages/Chat";
+import Chart from "./pages/Chart";
 import Chat from "./pages/Chat";
 import Develope from "./pages/Develope";
 import GroupChat from "./pages/GroupChat";

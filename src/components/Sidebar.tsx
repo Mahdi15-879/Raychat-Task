@@ -209,14 +209,27 @@ const Sidebar: FC = () => {
             <Link to="/black-list">لیست سیاه</Link>
             <RiProhibitedLine size={25} />
           </li>
-          <li>
+          <li className="menu-with-submenu">
+            <span>
+              {isSubMenuOpen ? (
+                <IoIosArrowUp size={25} />
+              ) : (
+                <IoIosArrowDown size={25} />
+              )}
+              <Link
+                to="/develope"
+                onClick={() => setIsSubMenuOpen(!isSubMenuOpen)}
+              >
+                تمدید یا ارتقا پکیچ
+              </Link>
+              <BiSolidShoppingBagAlt size={25} />
+            </span>
             {isSubMenuOpen ? (
-              <IoIosArrowUp size={25} />
-            ) : (
-              <IoIosArrowDown size={25} />
-            )}
-            <Link to="/develope">تمدید یا ارتقا پکیچ</Link>
-            <BiSolidShoppingBagAlt size={25} />
+              <ul>
+                <li>خرید شارژ مکالمه</li>
+                <li>لیست صورت حساب‌ها</li>
+              </ul>
+            ) : null}
           </li>
           <li>
             <Link to="/chart">آمار و ارقام</Link>
