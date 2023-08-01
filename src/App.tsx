@@ -1,11 +1,11 @@
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+
 // COMPONENTS
 import Sidebar from "./components/Sidebar";
 
-const App = () => {
+const App: React.FC = () => {
   return (
-    <div className="App">
-      <Sidebar />
-    </div>
+    
   );
 };
 
