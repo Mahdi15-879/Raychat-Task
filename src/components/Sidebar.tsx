@@ -144,4 +144,120 @@
 // export default Sidebar;
 
 //.....................................................................................
+import { useState, useContext, FC, useEffect } from "react";
+import { BrowserRouter as Router, Link } from "react-router-dom";
 
+// CONTEXT
+import { ThemeContext } from "../contexts/Context";
+
+// ICONS
+import {
+  RiHome6Fill,
+  RiChatSmile3Fill,
+  RiWhatsappFill,
+  RiProhibitedLine,
+} from "react-icons/ri";
+import { MdPeopleAlt, MdInsertChart, MdSettings } from "react-icons/md";
+import { PiArrowSquareDownFill } from "react-icons/pi";
+import { BsPersonVcardFill, BsFillSendFill } from "react-icons/bs";
+import { TbFishHook } from "react-icons/tb";
+import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
+import { BiSolidShoppingBagAlt } from "react-icons/bi";
+
+const Sidebar: FC = () => {
+  const [isSubMenuOpen, setIsSubMenuOpen] = useState<boolean>(false);
+
+  const { theme, setTheme } = useContext(ThemeContext);
+
+  const ToggleTheme = () => {
+    if (theme.darkMode) {
+      setTheme({
+        darkMode: false,
+      });
+    } else {
+      setTheme({
+        darkMode: true,
+      });
+    }
+  };
+
+  return (
+    <div className={`sidebar ${theme.darkMode ? "dark" : "light"}`}>
+      <div
+        className={`${
+          theme.darkMode ? "sidebar-body_dark" : "sidebar-body_light"
+        }`}
+      >
+        <ul>
+          <li>
+            <Link to="/">داشبورد</Link>
+            <RiHome6Fill size={25} />
+          </li>
+          <li>
+            <Link to="/operators">اپراتورها</Link>
+            <MdPeopleAlt size={25} />
+          </li>
+          <li>
+            <Link to="/install">نصب و راه اندازی</Link>
+            <PiArrowSquareDownFill size={25} />
+          </li>
+          <li>
+            <Link to="/chat">پنل گفتگوی آنلاین</Link>
+            <RiChatSmile3Fill size={25} />
+          </li>
+          <li>
+            <Link to="/black-list">لیست سیاه</Link>
+            <RiProhibitedLine size={25} />
+          </li>
+          <li>
+            {isSubMenuOpen ? (
+              <IoIosArrowUp size={25} />
+            ) : (
+              <IoIosArrowDown size={25} />
+            )}
+            <Link to="/develope">تمدید یا ارتقا پکیچ</Link>
+            <BiSolidShoppingBagAlt size={25} />
+          </li>
+          <li>
+            <Link to="/chart">آمار و ارقام</Link>
+            <MdInsertChart size={25} />
+          </li>
+          <li>
+            <Link to="/whatsapp">اتصال واتساپ</Link>
+            <RiWhatsappFill size={25} />
+          </li>
+          <li>
+            <Link to="/team">تنظیمات تیم</Link>
+            <BsPersonVcardFill size={25} />
+          </li>
+          <li>
+            <Link to="/group-chat">پیام گروهی</Link>
+            <BsFillSendFill size={25} />
+          </li>
+          <li>
+            <Link to="/web-hook">وب هوک</Link>
+            <TbFishHook size={25} />
+          </li>
+        </ul>
+      </div>
+
+      <div
+        className={`${
+          theme.darkMode ? "sidebar-footer_dark" : "sidebar-footer_light"
+        }`}
+      >
+        <ul>
+          <li>
+            <Link to="/setting">تنظیمات رایچت</Link>
+            <MdSettings size={25} />
+          </li>
+          <li>
+            <button onClick={ToggleTheme}>toggle</button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  );
+};
+
+export default Sidebar;
