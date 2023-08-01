@@ -1,0 +1,49 @@
+@font-face {
+  font-family: IRANYekan-Medium;
+  src: url("../../public/assets/font/IranYekan/webFont/IRANYekanWebMedium.ttf");
+  src: url("../../public/assets/font/IranYekan/webFont/IRANYekanWebMedium.woff");
+}
+
+.header {
+  width: 100vw;
+  background-color: #fafafa;
+  padding: 1rem 1.5rem 1rem 1.5rem;
+  position: sticky;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header section {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.header section div {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-family: IRANYekan-Medium;
+}
+
+.header section div figure,
+.header section figure {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.header section div figure img,
+.header section figure img {
+  width: 100%;
+  height: 100%;
+}
+
+/* Dark Mode */
+.header-dark {
+  background-color: rgb(18, 8, 77);
+}

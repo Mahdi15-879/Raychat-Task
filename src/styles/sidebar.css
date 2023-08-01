@@ -11,7 +11,7 @@
 }
 
 .sidebar {
-  width: 268px;
+  width: 15rem;
   height: 100vh;
   background-color: #fafafa;
   position: fixed;
@@ -19,69 +19,100 @@
   overflow: auto;
 }
 
-.sidebar .logo {
-  display: flex;
-  justify-content: flex-end;
-  margin: 1rem 1.5rem 0 0;
-}
-
-.sidebar .sidebar-body {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-  margin: 5rem 1.5rem 5rem 0;
-}
-
-.sidebar .sidebar-body .sidebar-body_active {
-  font-family: IRANYekan-Bold;
-  /* background-color: #fff; */
-  padding: 0.5rem 0;
-}
-
-.sidebar .sidebar-body div {
-  display: flex;
-  flex-direction: row-reverse;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 1rem;
-  font-family: IRANYekan-Medium;
-}
-
-.sidebar .sidebar-body .sidebar-body_submenu {
-  display: flex;
-  align-items: flex-start;
-}
-
-.sidebar .sidebar-body .sidebar-body_submenu div {
+.sidebar .sidebar-container {
+  height: 100%;
+  padding: 1.5rem 0 1.5rem 0;
+  overflow: auto;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  cursor: pointer;
+  gap: 3rem;
 }
 
-.sidebar .sidebar-body .sidebar-body_submenu div div a {
-  color: #909090;
-  font-size: 14px;
+.sidebar .sidebar-body,
+.sidebar .sidebar-footer {
+  /* display: flex;
+  flex-direction: column;
+  align-items: flex-end; */
+  padding-right: 1.5rem;
 }
 
-.sidebar .sidebar-body div a {
-  text-decoration: none;
-  color: #000;
-  font-size: 1rem;
-}
-
-.sidebar .setting {
+.sidebar .sidebar-body ul,
+.sidebar .sidebar-footer ul {
   display: flex;
-  flex-direction: row-reverse;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 1rem;
-  margin: 0 1.5rem 2rem 0;
+  flex-direction: column;
+  gap: 1.3rem;
 }
 
-.sidebar .setting a {
+.sidebar .sidebar-body ul li,
+.sidebar .sidebar-footer ul li {
+  width: 100%;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.8rem;
+}
+
+.sidebar .sidebar-body ul li.active a {
+  font-family: IRANYekan-Bold !important;
+}
+
+.sidebar .sidebar-body ul li a,
+.sidebar .sidebar-footer ul li a {
   text-decoration: none;
-  color: #000;
-  font-size: 1rem;
   font-family: IRANYekan-Medium;
+  color: #000;
+  font-size: 0.8rem;
+}
+
+.menu-with-submenu {
+  flex-direction: column;
+  align-items: flex-end !important;
+}
+
+.menu-with-submenu span {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.menu-with-submenu .submenu {
+  display: flex;
+  flex-direction: column;
+  margin-right: 2.5rem;
+}
+
+.menu-with-submenu .submenu li a {
+  font-family: IRANYekan-Medium;
+  color: #909090 !important;
+  font-size: 0.7rem !important;
+}
+
+.theme-toggle button {
+  background-color: #fff;
+  border: 1px solid #000;
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: IRANYekan-Bold;
+}
+
+/* Dark Mode */
+.sidebar-dark {
+  background-color: rgb(18, 8, 77);
+}
+
+.sidebar-dark .sidebar-body_dark ul li a,
+.sidebar-dark .sidebar-footer_dark ul li a {
+  color: #fff;
+}
+
+.sidebar-dark .sidebar-footer_dark .theme-toggle button {
+  background-color: rgb(11, 4, 54);
+  border: 1px solid #0068d2;
+  color: #fff;
 }

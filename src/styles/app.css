@@ -1,0 +1,17 @@
+.App {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100vh;
+}
+
+.App-dark {
+  background-color: rgb(11, 4, 54) !important;
+  color: #fff !important;
+}
+
+.App main .container {
+  width: 100%;
+  text-align: center;
+  font-family: "Courier New", Courier, monospace;
+}
