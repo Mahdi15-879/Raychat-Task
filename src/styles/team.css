@@ -149,6 +149,12 @@
   padding: 1rem 0.5rem;
 }
 
+.Team .AddTeam-Modal div .add-operators span {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
 .Team .AddTeam-Modal div .add-operators input {
   border: none;
   width: 100%;

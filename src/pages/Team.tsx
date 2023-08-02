@@ -6,12 +6,13 @@ import { ThemeContext } from "../contexts/Context";
 // COMPONENTS
 import AddTeam from "../components/AddTeam";
 import TeamCard from "../components/TeamCard";
+import EditTeam from "../components/EditTeam";
 
 // STYLES
 import "../styles/team.css";
 
 // ICONS
-import { MdPersonAddAlt1 } from "react-icons/md";
+import { MdPersonAddAlt1, MdPersonRemoveAlt1 } from "react-icons/md";
 
 const user: string = require("../images/user.png");
 
@@ -31,7 +32,29 @@ const Team: FC = () => {
   const [operators, setOperators] = useState<string[]>([]);
   const [teamName, setTeamName] = useState<string>("");
   const [operatorName, setOperatorName] = useState<string>("");
-  const [teams, setTeams] = useState<ITeamsInfo[]>([]);
+  const [teams, setTeams] = useState<ITeamsInfo[]>([
+    {
+      id: 12548,
+      teamName: "رایچت",
+      pictureSrc: user,
+      operators: ["علی", "محمد"],
+    },
+  ]);
+
+  // Edit Info
+  const [editID, setEditID] = useState<number>();
+  const [editModalOpen, setEditModalOpen] = useState(false);
+  const [editTeamIndex, setEditTeamIndex] = useState<number>(0);
+  const [editTeamName, setEditTeamName] = useState<string>(
+    teams[editTeamIndex].teamName
+  );
+  const [editBaseCode, setEditBaseCode] = useState<string[]>([
+    teams[editTeamIndex].pictureSrc,
+  ]);
+  const [editOperatorName, setEditOperatorName] = useState<string>("");
+  const [editOperators, setEditOperators] = useState<string[]>(
+    teams[editTeamIndex].operators
+  );
 
   const handleOpenModal = () => {
     setModalOpen(true);
@@ -39,6 +62,14 @@ const Team: FC = () => {
 
   const handleCloseModal = () => {
     setModalOpen(false);
+  };
+
+  const handleOpenEditModal = () => {
+    setEditModalOpen(true);
+  };
+
+  const handleCloseEditModal = () => {
+    setEditModalOpen(false);
   };
 
   const fileChangeHandler = (event: ChangeEvent<HTMLInputElement>): void => {
@@ -55,18 +86,38 @@ const Team: FC = () => {
     reader.onload = () => {
       if (reader.result) {
         setBaseCode([reader.result.toString()]);
+        setEditBaseCode([reader.result.toString()]);
       }
     };
   };
 
-  const handleAddOperator = () => {
-    if (operatorName != "") {
-      setOperators([...operators, operatorName]);
-      setOperatorName("");
+  const handleAddOperator = (isEdit: boolean) => {
+    if (isEdit) {
+      if (editOperatorName != "") {
+        setEditOperators([...editOperators, editOperatorName]);
+        setEditOperatorName("");
+      }
+    } else {
+      if (operatorName != "") {
+        setOperators([...operators, operatorName]);
+        setOperatorName("");
+      }
     }
   };
 
+  const handleRemoveOperator = () => {
+    const filteredList = editOperators.filter(
+      (operator) => operator != editOperatorName
+    );
+    setEditOperators(filteredList);
+    setEditOperatorName("");
+  };
+
   const handleResetState = (): void => {
+    setEditBaseCode([user]);
+    setEditOperators([]);
+    setEditTeamName("");
+
     setBaseCode([user]);
     setOperators([]);
     setTeamName("");
@@ -95,9 +146,52 @@ const Team: FC = () => {
     setModalOpen(false);
   };
 
+  const clickEditHandler = () => {
+    if (!editTeamName) {
+      return alert("نام تیم الزامی می‌باشد!");
+    }
+
+    if (editOperators.length == 0) {
+      return alert("افزودن حداقل یک عضو به تیم الزامی می‌باشد!");
+    }
+
+    teams.map((team) => {
+      if (team.id === editID) {
+        team.operators = editOperators;
+        team.pictureSrc = editBaseCode[0];
+        team.teamName = editTeamName;
+      }
+    });
+
+    handleResetState();
+    setEditModalOpen(false);
+  };
+
   const handleDeleteCard = (id: number): void => {
-    const filteredTeams: ITeamsInfo[] = teams.filter((team) => team.id != id);
-    setTeams(filteredTeams);
+    if (teams.length > 1) {
+      const filteredTeams: ITeamsInfo[] = teams.filter((team) => team.id != id);
+      setTeams(filteredTeams);
+    } else {
+      return alert(
+        "در حال حاظر یک تیم وجود دارد ، به همین دلیل امکان پاک کردن وجود ندارد!"
+      );
+    }
+  };
+
+  const handleEditCard = (id: number): void => {
+    const index: number = teams.findIndex((team) => team.id === id);
+    setEditTeamIndex(index);
+
+    setEditID(id);
+    teams.map((team) => {
+      if (team.id === id) {
+        setEditBaseCode([team.pictureSrc]);
+        setEditOperators(team.operators);
+        setEditTeamName(team.teamName);
+      }
+    });
+
+    handleOpenEditModal();
   };
 
   return (
@@ -154,7 +248,7 @@ const Team: FC = () => {
         >
           <MdPersonAddAlt1
             size={20}
-            onClick={handleAddOperator}
+            onClick={() => handleAddOperator(false)}
             cursor={"pointer"}
           />
           <input
@@ -183,13 +277,90 @@ const Team: FC = () => {
         </section>
       </AddTeam>
 
+      <EditTeam isOpen={editModalOpen} onClose={handleCloseEditModal}>
+        <div className="modal-title">
+          <h3>ویرایش تیم</h3>
+        </div>
+
+        <section
+          className={`title-profile ${theme.darkMode && "title-profile_dark"}`}
+        >
+          <input
+            type="text"
+            placeholder="نام تیم را وارد کنید"
+            value={editTeamName}
+            onChange={(e) => setEditTeamName(e.target.value)}
+          />
+          <div className="image-container">
+            <label htmlFor="fileInput">
+              <figure>
+                <img src={editBaseCode[0]} alt="User Profile" />
+              </figure>
+              <input
+                id="fileInput"
+                type="file"
+                accept=".png, .jpg, .jpeg"
+                onChange={fileChangeHandler}
+              />
+            </label>
+          </div>
+        </section>
+
+        <section
+          className={`add-operators ${theme.darkMode && "add-operators_dark"}`}
+        >
+          <span>
+            <MdPersonAddAlt1
+              size={20}
+              onClick={() => handleAddOperator(true)}
+              cursor={"pointer"}
+            />
+
+            <MdPersonRemoveAlt1
+              size={20}
+              onClick={handleRemoveOperator}
+              cursor={"pointer"}
+              color="red"
+            />
+          </span>
+          <input
+            type="text"
+            placeholder="اپراتورهای خود را به این تیم اضافه کنید"
+            value={editOperatorName}
+            onChange={(e) => setEditOperatorName(e.target.value)}
+          />
+        </section>
+
+        <section className="operators-list">
+          <h4>اپراتورها</h4>
+          <div>
+            {editOperators.length > 0 ? (
+              editOperators.map((operator) => <h5>{operator}</h5>)
+            ) : (
+              <h5>اپراتوری افزوده نشده است</h5>
+            )}
+          </div>
+        </section>
+
+        <section className="Btn-container">
+          <button onClick={clickEditHandler}>تایید</button>
+
+          <button onClick={() => setEditModalOpen(false)}>انصراف</button>
+        </section>
+      </EditTeam>
+
       <section
         className={`TeamCard-container ${
           theme.darkMode && "TeamCard-container_dark"
         }`}
       >
         {teams.map((team) => (
-          <TeamCard key={team.id} teamInfo={team} onDelete={handleDeleteCard} />
+          <TeamCard
+            key={team.id}
+            teamInfo={team}
+            onDelete={handleDeleteCard}
+            onEdit={handleEditCard}
+          />
         ))}
       </section>
     </div>

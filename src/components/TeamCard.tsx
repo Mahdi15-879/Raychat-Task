@@ -23,11 +23,10 @@ interface TeamInfo {
 interface CardProps {
   teamInfo: TeamInfo;
   onDelete: (id: number) => void;
+  onEdit: (id: number) => void;
 }
 
-const Card: React.FC<CardProps> = ({ teamInfo, onDelete }) => {
-  const [modalOpen, setModalOpen] = useState(false);
-
+const Card: React.FC<CardProps> = ({ teamInfo, onDelete, onEdit }) => {
   const { theme } = useContext(ThemeContext);
 
   return (
@@ -43,7 +42,12 @@ const Card: React.FC<CardProps> = ({ teamInfo, onDelete }) => {
       </div>
 
       <div className="TeamCard_icons">
-        <LuEdit size={18} color="#909090" cursor={"pointer"} />
+        <LuEdit
+          size={18}
+          color="#909090"
+          cursor={"pointer"}
+          onClick={() => onEdit(teamInfo.id)}
+        />
         <MdDelete
           size={18}
           color="#909090"
