@@ -73,3 +73,21 @@
   background-color: rgb(18, 8, 77);
   color: #fff;
 }
+
+.Team .AddTeam-Modal .title-profile .image-container figure {
+  cursor: pointer;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  overflow: hidden;
+  object-fit: contain;
+}
+
+.Team .AddTeam-Modal .title-profile .image-container figure img {
+  width: 100%;
+  height: 100%;
+}
+
+.Team .AddTeam-Modal .title-profile .image-container #fileInput {
+  display: none;
+}
