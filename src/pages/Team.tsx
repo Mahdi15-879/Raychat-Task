@@ -5,6 +5,7 @@ import { ThemeContext } from "../contexts/Context";
 
 // COMPONENTS
 import AddTeam from "../components/AddTeam";
+import TeamCard from "../components/TeamCard";
 
 // STYLES
 import "../styles/team.css";
@@ -15,7 +16,7 @@ import { MdPersonAddAlt1 } from "react-icons/md";
 const user: string = require("../images/user.png");
 
 // INTERFACES
-export interface ITeamsInfo {
+interface ITeamsInfo {
   id: number;
   teamName: string;
   pictureSrc: string;
@@ -92,6 +93,11 @@ const Team: FC = () => {
 
     handleResetState();
     setModalOpen(false);
+  };
+
+  const handleDeleteCard = (id: number): void => {
+    const filteredTeams: ITeamsInfo[] = teams.filter((team) => team.id != id);
+    setTeams(filteredTeams);
   };
 
   return (
@@ -176,6 +182,16 @@ const Team: FC = () => {
           <button onClick={() => setModalOpen(false)}>انصراف</button>
         </section>
       </AddTeam>
+
+      <section
+        className={`TeamCard-container ${
+          theme.darkMode && "TeamCard-container_dark"
+        }`}
+      >
+        {teams.map((team) => (
+          <TeamCard key={team.id} teamInfo={team} onDelete={handleDeleteCard} />
+        ))}
+      </section>
     </div>
   );
 };

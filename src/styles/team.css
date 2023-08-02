@@ -219,3 +219,11 @@
   color: #7e7a7a;
   border: 1px solid #7e7a7a33;
 }
+
+.Team .TeamCard-container {
+  width: 90%;
+  margin-top: 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 1.5rem;
+}
