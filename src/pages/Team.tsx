@@ -1,4 +1,5 @@
 import { useContext, useState, FC, FormEvent, ChangeEvent } from "react";
+import { v4 as uuidv4 } from "uuid";
 
 // CONTEXT
 import { ThemeContext } from "../contexts/Context";
@@ -18,7 +19,7 @@ const user: string = require("../images/user.png");
 
 // INTERFACES
 interface ITeamsInfo {
-  id: number;
+  id: string;
   teamName: string;
   pictureSrc: string;
   operators: string[];
@@ -34,7 +35,7 @@ const Team: FC = () => {
   const [operatorName, setOperatorName] = useState<string>("");
   const [teams, setTeams] = useState<ITeamsInfo[]>([
     {
-      id: 12548,
+      id: uuidv4(),
       teamName: "رایچت",
       pictureSrc: user,
       operators: ["علی", "محمد"],
@@ -42,18 +43,18 @@ const Team: FC = () => {
   ]);
 
   // Edit Info
-  const [editID, setEditID] = useState<number>();
+  const [editID, setEditID] = useState<string>();
   const [editModalOpen, setEditModalOpen] = useState(false);
   const [editTeamIndex, setEditTeamIndex] = useState<number>(0);
   const [editTeamName, setEditTeamName] = useState<string>(
-    teams[editTeamIndex].teamName
+    teams[editTeamIndex]?.teamName
   );
   const [editBaseCode, setEditBaseCode] = useState<string[]>([
-    teams[editTeamIndex].pictureSrc,
+    teams[editTeamIndex]?.pictureSrc,
   ]);
   const [editOperatorName, setEditOperatorName] = useState<string>("");
   const [editOperators, setEditOperators] = useState<string[]>(
-    teams[editTeamIndex].operators
+    teams[editTeamIndex]?.operators
   );
 
   const handleOpenModal = () => {
@@ -135,7 +136,7 @@ const Team: FC = () => {
     setTeams([
       ...teams,
       {
-        id: Math.floor(Math.random() * 1000000),
+        id: uuidv4(),
         teamName,
         operators,
         pictureSrc: baseCode[0],
@@ -167,7 +168,7 @@ const Team: FC = () => {
     setEditModalOpen(false);
   };
 
-  const handleDeleteCard = (id: number): void => {
+  const handleDeleteCard = (id: string): void => {
     if (teams.length > 1) {
       const filteredTeams: ITeamsInfo[] = teams.filter((team) => team.id != id);
       setTeams(filteredTeams);
@@ -178,7 +179,7 @@ const Team: FC = () => {
     }
   };
 
-  const handleEditCard = (id: number): void => {
+  const handleEditCard = (id: string): void => {
     const index: number = teams.findIndex((team) => team.id === id);
     setEditTeamIndex(index);
 
@@ -250,6 +251,7 @@ const Team: FC = () => {
             size={20}
             onClick={() => handleAddOperator(false)}
             cursor={"pointer"}
+            color={theme.darkMode ? "#0068D2" : "#000"}
           />
           <input
             type="text"
@@ -314,6 +316,7 @@ const Team: FC = () => {
               size={20}
               onClick={() => handleAddOperator(true)}
               cursor={"pointer"}
+              color={theme.darkMode ? "#0068D2" : "#000"}
             />
 
             <MdPersonRemoveAlt1

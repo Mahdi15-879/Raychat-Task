@@ -14,7 +14,7 @@ import { MdDelete } from "react-icons/md";
 import { LuEdit } from "react-icons/lu";
 
 interface TeamInfo {
-  id: number;
+  id: string;
   teamName: string;
   operators: string[];
   pictureSrc: string;
@@ -22,8 +22,8 @@ interface TeamInfo {
 
 interface CardProps {
   teamInfo: TeamInfo;
-  onDelete: (id: number) => void;
-  onEdit: (id: number) => void;
+  onDelete: (id: string) => void;
+  onEdit: (id: string) => void;
 }
 
 const Card: React.FC<CardProps> = ({ teamInfo, onDelete, onEdit }) => {
