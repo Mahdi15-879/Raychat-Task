@@ -1,4 +1,7 @@
-import React, { useState, ReactNode } from "react";
+import React, { ReactNode, useContext } from "react";
+
+// CONTEXT
+import { ThemeContext } from "../contexts/Context";
 
 import "../styles/team.css";
 
@@ -9,6 +12,8 @@ interface ModalProps {
 }
 
 const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
+  const { theme } = useContext(ThemeContext);
+
   const modalStyle: React.CSSProperties = {
     display: isOpen ? "block" : "none",
     position: "fixed",
@@ -21,9 +26,9 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
   };
 
   const modalContentStyle: React.CSSProperties = {
-    backgroundColor: "#fff",
+    backgroundColor: theme.darkMode ? "rgb(18, 8, 77)" : "#fff",
     padding: "20px",
-    borderRadius: "4px",
+    borderRadius: "8px",
     position: "absolute",
     top: "50%",
     left: "50%",

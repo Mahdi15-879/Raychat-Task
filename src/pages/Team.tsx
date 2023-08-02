@@ -94,8 +94,6 @@ const Team: FC = () => {
     setModalOpen(false);
   };
 
-  console.log(teams);
-
   return (
     <div className={`Team ${theme.darkMode && "Team-dark"}`}>
       <section className="Team-header">
@@ -117,9 +115,13 @@ const Team: FC = () => {
       </section>
 
       <AddTeam isOpen={modalOpen} onClose={handleCloseModal}>
-        <h3>ایجاد تیم</h3>
+        <div className="modal-title">
+          <h3>ایجاد تیم</h3>
+        </div>
 
-        <section className="title-profile">
+        <section
+          className={`title-profile ${theme.darkMode && "title-profile_dark"}`}
+        >
           <input
             type="text"
             placeholder="نام تیم را وارد کنید"
@@ -141,8 +143,14 @@ const Team: FC = () => {
           </div>
         </section>
 
-        <section className="add-operators">
-          <MdPersonAddAlt1 size={20} onClick={handleAddOperator} />
+        <section
+          className={`add-operators ${theme.darkMode && "add-operators_dark"}`}
+        >
+          <MdPersonAddAlt1
+            size={20}
+            onClick={handleAddOperator}
+            cursor={"pointer"}
+          />
           <input
             type="text"
             placeholder="اپراتورهای خود را به این تیم اضافه کنید"
