@@ -1,0 +1,75 @@
+@font-face {
+  font-family: IRANYekan-Bold;
+  src: url("../../public/assets/font/IranYekan/webFont/IRANYekanWebExtraBold.ttf");
+  src: url("../../public/assets/font/IranYekan/webFont/IRANYekanWebExtraBold.woff");
+}
+
+@font-face {
+  font-family: IRANYekan-Medium;
+  src: url("../../public/assets/font/IranYekan/webFont/IRANYekanWebMedium.ttf");
+  src: url("../../public/assets/font/IranYekan/webFont/IRANYekanWebMedium.woff");
+}
+
+.Team {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.Team .Team-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 3rem 0 1.5rem 0;
+  border-bottom: 1px solid #bbb8b865;
+  width: 90%;
+}
+
+.Team .Team-header button {
+  background-color: #8c2c7f;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 8px;
+  font-family: IRANYekan-Medium;
+  cursor: pointer;
+}
+
+.Team .Team-header h2 {
+  font-family: IRANYekan-Bold;
+}
+
+.Team .Team-body {
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  padding-top: 1.5rem;
+}
+
+.Team .Team-body label {
+  font-family: IRANYekan-Medium;
+  color: #909090;
+  font-size: 0.9rem;
+}
+
+.Team .Team-body select {
+  direction: rtl;
+  margin-top: 1rem;
+  width: 25%;
+  padding: 0.5rem 0.5rem;
+  border: 1px solid #bbb8b865;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-family: IRANYekan-Medium;
+}
+
+.Team .Team-body select:focus {
+  outline: none;
+}
+
+.Team-dark .Team-body select {
+  background-color: rgb(18, 8, 77);
+  color: #fff;
+}

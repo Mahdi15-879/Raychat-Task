@@ -5,7 +5,7 @@
 }
 
 .header {
-  width: 100vw;
+  width: 100%;
   background-color: #fafafa;
   padding: 1rem 1.5rem 1rem 1.5rem;
   position: sticky;

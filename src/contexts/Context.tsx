@@ -17,7 +17,7 @@ export interface ThemeContextInterface {
 
 const defaultState = {
   theme: {
-    darkMode: true,
+    darkMode: false,
   },
   setTheme: (theme: Theme) => {},
 } as ThemeContextInterface;
@@ -30,7 +30,7 @@ type ThemeProviderProps = {
 
 const ThemeProvider = ({ children }: ThemeProviderProps) => {
   const [theme, setTheme] = useState<Theme>({
-    darkMode: true,
+    darkMode: false,
   });
 
   return (
