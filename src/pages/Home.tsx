@@ -33,6 +33,7 @@ const Home = () => {
   const [isCardClicked, setIsCardClicked] = useState<boolean>(true);
   const [isClickedID, setIsClickedID] = useState<string>("");
   const [placeholder, setPlaceholder] = useState("");
+  const [titleEdit, setTitleEdit] = useState("");
 
   const editor = useRef(null);
   const [content, setContent] = useState("");
@@ -72,6 +73,7 @@ const Home = () => {
     questions.map((question) => {
       if (question.id === id) {
         setContent(question.questionDesc);
+        setTitleEdit(question.questionTitle);
       }
     });
   };
@@ -80,6 +82,7 @@ const Home = () => {
     questions.map((question) => {
       if (question.id === id) {
         question.questionDesc = content;
+        question.questionTitle = titleEdit;
         setContent("");
       }
     });
@@ -151,17 +154,27 @@ const Home = () => {
               onClick={() => clickHandler(question.id)}
             >
               {question.id === isClickedID && isCardClicked ? (
-                <>
-                  <div>
-                    <h2>{question.questionTitle}</h2>
-
+                <div className="QuestionCard-edit">
+                  <div className="QuestionCard-edit_title">
                     <span>
-                      <IoIosArrowDown size={18} />
-                      <RiDeleteBin7Line size={18} />
+                      <IoIosArrowDown
+                        size={18}
+                        color={theme.darkMode ? "#0068D2" : "#7e7e7e"}
+                      />
+                      <RiDeleteBin7Line
+                        size={18}
+                        color={theme.darkMode ? "#0068D2" : "#7e7e7e"}
+                      />
                     </span>
+
+                    <input
+                      type="text"
+                      value={titleEdit}
+                      onChange={(e) => setTitleEdit(e.target.value)}
+                    />
                   </div>
 
-                  <div>
+                  <div className="QuestionCard-edit_body">
                     <JoditEditor
                       ref={editor}
                       value={content}
@@ -170,22 +183,31 @@ const Home = () => {
                     />
                   </div>
 
-                  <button onClick={() => saveQuestionHandler(question.id)}>
+                  <button onClick={() => saveQuestionHandler(question.id)} className="QuestionCard-edit_btn">
                     ذخیره
                   </button>
-                </>
+                </div>
               ) : (
-                <>
+                <div className="QuestionCard-normal">
                   <div>
-                    <PiDotsSixVerticalBold size={18} />
-                    <h4>{question.questionTitle}</h4>
+                    <IoIosArrowDown
+                      size={18}
+                      color={theme.darkMode ? "#0068D2" : "#7e7e7e"}
+                    />
+                    <RiDeleteBin7Line
+                      size={18}
+                      color={theme.darkMode ? "#0068D2" : "#7e7e7e"}
+                    />
                   </div>
 
                   <div>
-                    <IoIosArrowDown size={18} />
-                    <RiDeleteBin7Line size={18} />
+                    <h4>{question.questionTitle}</h4>
+                    <PiDotsSixVerticalBold
+                      size={22}
+                      color={theme.darkMode ? "#0068D2" : "#7e7e7e"}
+                    />
                   </div>
-                </>
+                </div>
               )}
             </QuestionCard>
           ))}
