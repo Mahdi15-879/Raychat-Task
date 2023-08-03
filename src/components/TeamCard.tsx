@@ -1,10 +1,7 @@
 import { useState, useContext } from "react";
 
 // CONTEXT
-import { ThemeContext } from "../contexts/Context";
-
-// COMPONENTS
-import EditTeam from "../components/EditTeam";
+import { ThemeContext } from "../contexts/ThemeContext";
 
 // STYLES
 import "../styles/team_card.css";

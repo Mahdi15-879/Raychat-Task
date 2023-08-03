@@ -1,7 +1,8 @@
 import { useContext, useState } from "react";
 
 // CONTEXT
-import { ThemeContext } from "../contexts/Context";
+import { ThemeContext } from "../contexts/ThemeContext";
+import { LanguageContext } from "../contexts/LanguageContext";
 
 // STYLES
 import "../styles/header.css";
@@ -19,12 +20,19 @@ const usa: string = require("../images/usa.png");
 const Header = () => {
   const [lang, setLang] = useState<string>("fa");
   const { theme } = useContext(ThemeContext);
+  const { language, setLanguage } = useContext(LanguageContext);
 
   const langHandler = () => {
     if (lang === "fa") {
       setLang("en");
+      setLanguage({
+        isFa: false,
+      });
     } else {
       setLang("fa");
+      setLanguage({
+        isFa: true,
+      });
     }
   };
 
@@ -36,7 +44,7 @@ const Header = () => {
             size={18}
             color={theme.darkMode ? "#0068D2" : "#000"}
           />
-          پروفایل کاربری
+          {language.isFa ? "پروفایل کاربری" : "User Profile"}
           <figure>
             <img src={user} alt="User" />
           </figure>
@@ -47,7 +55,10 @@ const Header = () => {
           color={theme.darkMode ? "#0068D2" : "#000"}
         />
 
-        <figure onClick={langHandler} title="زبان">
+        <figure
+          onClick={langHandler}
+          title={`${language.isFa ? "زبان" : "Language"}`}
+        >
           <img src={lang === "fa" ? iran : usa} alt="Language" />
         </figure>
       </section>

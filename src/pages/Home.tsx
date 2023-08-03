@@ -4,7 +4,8 @@ import { v4 as uuidv4 } from "uuid";
 import JoditEditor from "jodit-react";
 
 // CONTEXT
-import { ThemeContext } from "../contexts/Context";
+import { ThemeContext } from "../contexts/ThemeContext";
+import { LanguageContext } from "../contexts/LanguageContext";
 
 import QuestionCard from "../components/QuestionCard";
 
@@ -25,6 +26,8 @@ interface Iquestion {
 
 const Home = () => {
   const { theme } = useContext(ThemeContext);
+  const { language } = useContext(LanguageContext);
+
   const [checked, setChecked] = useState(false);
   const [questionTitle, setQuestionTitle] = useState<string>("");
   const [questionDesc, setQuestionDesc] = useState<string>("");
@@ -100,9 +103,11 @@ const Home = () => {
   return (
     <div className={`Home ${theme.darkMode && "Home-dark"}`}>
       <section className="Home-form">
-        <h3>افزودن</h3>
+        <h3>{language.isFa ? "افزودن" : "Add"}</h3>
 
         <p>
+          {language.isFa
+            ? `
           لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده
           از طراحان گرافیک است چاپگرها و متون بلکه روزنامه و مجله در ستون و
           سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای
@@ -110,6 +115,8 @@ const Home = () => {
           درصد گذشته حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد تا با
           نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان
           خلاقی
+          `
+            : `Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iusto officia ab ut neque, dolore, veniam illo, repellat eius quae voluptas deserunt. Minus, iure neque quasi repellat unde, expedita distinctio aliquam laboriosam odio consequatur deserunt labore sit maxime beatae sapiente voluptates a fuga cum ea nobis nisi iste tenetur. Odit, tempore!`}
         </p>
 
         <form onSubmit={submitHandler}>
@@ -129,10 +136,10 @@ const Home = () => {
               className="react-switch"
               id="material-switch"
             />
-            وضعیت
+            {language.isFa ? "وضعیت" : "Status"}
             <input
               type="text"
-              placeholder="عنوان سوال"
+              placeholder={language.isFa ? "عنوان سوال" : "Question Title"}
               value={questionTitle}
               onChange={(e) => setQuestionTitle(e.target.value)}
             />
@@ -144,10 +151,11 @@ const Home = () => {
             rows={12}
             value={questionDesc}
             onChange={(e) => setQuestionDesc(e.target.value)}
+            placeholder={language.isFa ? "توضیحات" : "Description"}
           ></textarea>
 
           <button type="submit">
-            افزودن
+            {language.isFa ? "افزودن" : "Add"}
             <IoIosAdd size={18} color="#fff" />
           </button>
         </form>
@@ -196,7 +204,7 @@ const Home = () => {
                     onClick={() => saveQuestionHandler(question.id)}
                     className="QuestionCard-edit_btn"
                   >
-                    ذخیره
+                    {language.isFa ? "ذخیره" : "Save"}
                   </button>
                 </div>
               ) : (

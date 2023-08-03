@@ -15,14 +15,14 @@ export interface ThemeContextInterface {
   setTheme: Dispatch<SetStateAction<Theme>>;
 }
 
-const defaultState = {
+const defaultThemeState = {
   theme: {
-    darkMode: false,
+    darkMode: true,
   },
   setTheme: (theme: Theme) => {},
 } as ThemeContextInterface;
 
-export const ThemeContext = createContext(defaultState);
+export const ThemeContext = createContext(defaultThemeState);
 
 type ThemeProviderProps = {
   children: ReactNode;
@@ -30,7 +30,7 @@ type ThemeProviderProps = {
 
 const ThemeProvider = ({ children }: ThemeProviderProps) => {
   const [theme, setTheme] = useState<Theme>({
-    darkMode: false,
+    darkMode: true,
   });
 
   return (

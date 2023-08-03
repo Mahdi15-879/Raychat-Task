@@ -1,8 +1,9 @@
-import { useContext, useState, FC, FormEvent, ChangeEvent } from "react";
+import { useContext, useState, FC, ChangeEvent } from "react";
 import { v4 as uuidv4 } from "uuid";
 
 // CONTEXT
-import { ThemeContext } from "../contexts/Context";
+import { ThemeContext } from "../contexts/ThemeContext";
+import { LanguageContext } from "../contexts/LanguageContext";
 
 // COMPONENTS
 import AddTeam from "../components/AddTeam";
@@ -27,6 +28,7 @@ interface ITeamsInfo {
 
 const Team: FC = () => {
   const { theme } = useContext(ThemeContext);
+  const { language } = useContext(LanguageContext);
 
   const [modalOpen, setModalOpen] = useState(false);
   const [baseCode, setBaseCode] = useState<string[]>([user]);
@@ -126,11 +128,17 @@ const Team: FC = () => {
 
   const clickAddHandler = () => {
     if (!teamName) {
-      return alert("نام تیم الزامی می‌باشد!");
+      return alert(
+        language.isFa ? "نام تیم الزامی می‌باشد!" : "Team name is required!"
+      );
     }
 
     if (operators.length == 0) {
-      return alert("افزودن حداقل یک عضو به تیم الزامی می‌باشد!");
+      return alert(
+        language.isFa
+          ? "افزودن حداقل یک عضو به تیم الزامی می‌باشد!"
+          : "Adding at least one member to the team is required!"
+      );
     }
 
     setTeams([
@@ -149,11 +157,17 @@ const Team: FC = () => {
 
   const clickEditHandler = () => {
     if (!editTeamName) {
-      return alert("نام تیم الزامی می‌باشد!");
+      return alert(
+        language.isFa ? "نام تیم الزامی می‌باشد!" : "Team name is required!"
+      );
     }
 
     if (editOperators.length == 0) {
-      return alert("افزودن حداقل یک عضو به تیم الزامی می‌باشد!");
+      return alert(
+        language.isFa
+          ? "افزودن حداقل یک عضو به تیم الزامی می‌باشد!"
+          : "Adding at least one member to the team is required!"
+      );
     }
 
     teams.map((team) => {
@@ -174,7 +188,9 @@ const Team: FC = () => {
       setTeams(filteredTeams);
     } else {
       return alert(
-        "در حال حاظر یک تیم وجود دارد ، به همین دلیل امکان پاک کردن وجود ندارد!"
+        language.isFa
+          ? "در حال حاظر یک تیم وجود دارد ، به همین دلیل امکان پاک کردن وجود ندارد!"
+          : "There is currently a team, so it is not possible to delete!"
       );
     }
   };
@@ -198,26 +214,32 @@ const Team: FC = () => {
   return (
     <div className={`Team ${theme.darkMode && "Team-dark"}`}>
       <section className="Team-header">
-        <button onClick={handleOpenModal}>ایجاد تیم جدید</button>
+        <button onClick={handleOpenModal}>
+          {language.isFa ? "ایجاد تیم جدید" : "Create a New Team"}
+        </button>
 
-        <h2>ایجاد تیم</h2>
+        <h2>{language.isFa ? "ایجاد تیم" : "Create a Team"}</h2>
       </section>
 
       <section className="Team-body">
         <label htmlFor="websites">
-          برای انجام تنظیمات روی تیم‌ها ابتدا وبسایت مورد نظر خود را انتخاب کنید
+          {language.isFa
+            ? "برای انجام تنظیمات روی تیم‌ها ابتدا وبسایت مورد نظر خود را انتخاب کنید"
+            : "To make settings on teams, first select your desired website"}
         </label>
 
         <select id="websites">
-          <option value="volvo">رایچت</option>
-          <option value="saab">دیجی‌کالا</option>
-          <option value="opel">ازکی</option>
+          <option value="volvo">{language.isFa ? "رایچت" : "Raychat"}</option>
+          <option value="saab">
+            {language.isFa ? "دیجی‌کالا" : "Digikala"}
+          </option>
+          <option value="opel">{language.isFa ? "ازکی" : "Azki"}</option>
         </select>
       </section>
 
       <AddTeam isOpen={modalOpen} onClose={handleCloseModal}>
         <div className="modal-title">
-          <h3>ایجاد تیم</h3>
+          <h3>{language.isFa ? "ایجاد تیم" : "Create a Team"}</h3>
         </div>
 
         <section
@@ -225,7 +247,9 @@ const Team: FC = () => {
         >
           <input
             type="text"
-            placeholder="نام تیم را وارد کنید"
+            placeholder={
+              language.isFa ? "نام تیم را وارد کنید" : "Enter Team Name"
+            }
             value={teamName}
             onChange={(e) => setTeamName(e.target.value)}
           />
@@ -255,33 +279,45 @@ const Team: FC = () => {
           />
           <input
             type="text"
-            placeholder="اپراتورهای خود را به این تیم اضافه کنید"
+            placeholder={
+              language.isFa
+                ? "اپراتورهای خود را به این تیم اضافه کنید"
+                : "Add your operators to this team"
+            }
             value={operatorName}
             onChange={(e) => setOperatorName(e.target.value)}
           />
         </section>
 
         <section className="operators-list">
-          <h4>اپراتورها</h4>
+          <h4>{language.isFa ? "اپراتورها" : "Operators"}</h4>
           <div>
             {operators.length > 0 ? (
               operators.map((operator) => <h5>{operator}</h5>)
             ) : (
-              <h5>اپراتوری افزوده نشده است</h5>
+              <h5>
+                {language.isFa
+                  ? "اپراتوری افزوده نشده است"
+                  : "The operator has not been added"}
+              </h5>
             )}
           </div>
         </section>
 
         <section className="Btn-container">
-          <button onClick={clickAddHandler}>تایید</button>
+          <button onClick={clickAddHandler}>
+            {language.isFa ? "تایید" : "Confirmation"}
+          </button>
 
-          <button onClick={() => setModalOpen(false)}>انصراف</button>
+          <button onClick={() => setModalOpen(false)}>
+            {language.isFa ? "انصراف" : "Cancel"}
+          </button>
         </section>
       </AddTeam>
 
       <EditTeam isOpen={editModalOpen} onClose={handleCloseEditModal}>
         <div className="modal-title">
-          <h3>ویرایش تیم</h3>
+          <h3>{language.isFa ? "ویرایش تیم" : "Edit Team"}</h3>
         </div>
 
         <section
@@ -289,7 +325,9 @@ const Team: FC = () => {
         >
           <input
             type="text"
-            placeholder="نام تیم را وارد کنید"
+            placeholder={
+              language.isFa ? "نام تیم را وارد کنید" : "Enter Team Name"
+            }
             value={editTeamName}
             onChange={(e) => setEditTeamName(e.target.value)}
           />
@@ -328,27 +366,39 @@ const Team: FC = () => {
           </span>
           <input
             type="text"
-            placeholder="اپراتورهای خود را به این تیم اضافه کنید"
+            placeholder={
+              language.isFa
+                ? "اپراتورهای خود را به این تیم اضافه کنید"
+                : "Add your operators to this team"
+            }
             value={editOperatorName}
             onChange={(e) => setEditOperatorName(e.target.value)}
           />
         </section>
 
         <section className="operators-list">
-          <h4>اپراتورها</h4>
+          <h4>{language.isFa ? "اپراتورها" : "Operators"}</h4>
           <div>
             {editOperators.length > 0 ? (
               editOperators.map((operator) => <h5>{operator}</h5>)
             ) : (
-              <h5>اپراتوری افزوده نشده است</h5>
+              <h5>
+                {language.isFa
+                  ? "اپراتوری افزوده نشده است"
+                  : "The operator has not been added"}
+              </h5>
             )}
           </div>
         </section>
 
         <section className="Btn-container">
-          <button onClick={clickEditHandler}>تایید</button>
+          <button onClick={clickEditHandler}>
+            {language.isFa ? "تایید" : "Confirmation"}
+          </button>
 
-          <button onClick={() => setEditModalOpen(false)}>انصراف</button>
+          <button onClick={() => setEditModalOpen(false)}>
+            {language.isFa ? "انصراف" : "Cancel"}
+          </button>
         </section>
       </EditTeam>
 

@@ -117,7 +117,6 @@
   display: flex;
   align-items: center !important;
   justify-content: space-between !important;
-  /* background-color: #fafafa !important; */
   border: 1px solid #bbb8b865;
   padding: 1rem;
   border-radius: 8px;
@@ -160,6 +159,7 @@
   padding: 1rem;
   border-radius: 8px;
   gap: 1rem;
+  border: 1px solid #bbb8b865;
 }
 
 .Home .question-card_container .QuestionCard-dark .QuestionCard-edit {

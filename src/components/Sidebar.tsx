@@ -5,7 +5,8 @@ import { Link } from "react-router-dom";
 import "../styles/sidebar.css";
 
 // CONTEXT
-import { ThemeContext } from "../contexts/Context";
+import { ThemeContext } from "../contexts/ThemeContext";
+import { LanguageContext } from "../contexts/LanguageContext";
 
 // ICONS
 import {
@@ -26,6 +27,7 @@ const Sidebar: FC = () => {
   const [isSubMenuOpen, setIsSubMenuOpen] = useState<boolean>(false);
 
   const { theme, setTheme } = useContext(ThemeContext);
+  const { language } = useContext(LanguageContext);
 
   const ToggleTheme = () => {
     if (theme.darkMode) {
@@ -47,32 +49,42 @@ const Sidebar: FC = () => {
         >
           <ul>
             <li className="active">
-              <Link to="/">داشبورد</Link>
+              <Link to="/">{language.isFa ? "داشبورد" : "Dashboard"}</Link>
               <RiHome6Fill size={18} color="#841474" />
             </li>
             <li>
-              <Link to="/operators">اپراتورها</Link>
+              <Link to="/operators">
+                {language.isFa ? "اپراتورها" : "Operators"}
+              </Link>
               <MdPeopleAlt
                 size={18}
                 color={theme.darkMode ? "#0068D2" : "#000"}
               />
             </li>
             <li>
-              <Link to="/install">نصب و راه اندازی</Link>
+              <Link to="/install">
+                {language.isFa ? "نصب و راه اندازی" : "Installation"}
+              </Link>
               <PiArrowSquareDownFill
                 size={18}
                 color={theme.darkMode ? "#0068D2" : "#000"}
               />
             </li>
             <li>
-              <Link to="/chat">پنل گفتگوی آنلاین</Link>
+              <Link to="/chat">
+                {language.isFa
+                  ? "پنل گفتگوی آنلاین"
+                  : "Online Discussion Panel"}
+              </Link>
               <RiChatSmile3Fill
                 size={18}
                 color={theme.darkMode ? "#0068D2" : "#000"}
               />
             </li>
             <li>
-              <Link to="/black-list">لیست سیاه</Link>
+              <Link to="/black-list">
+                {language.isFa ? "لیست سیاه" : "Black List"}
+              </Link>
               <RiProhibitedLine
                 size={18}
                 color={theme.darkMode ? "#0068D2" : "#000"}
@@ -95,7 +107,9 @@ const Sidebar: FC = () => {
                   to="/develope"
                   onClick={() => setIsSubMenuOpen(!isSubMenuOpen)}
                 >
-                  تمدید یا ارتقا پکیچ
+                  {language.isFa
+                    ? "تمدید یا ارتقا پکیچ"
+                    : "Upgrading the Package"}
                 </Link>
                 <BiSolidShoppingBagAlt
                   size={18}
@@ -105,44 +119,56 @@ const Sidebar: FC = () => {
               {isSubMenuOpen ? (
                 <ul className="submenu">
                   <li>
-                    <a href="#">خرید شارژ مکالمه</a>
+                    <a href="#">
+                      {language.isFa ? "خرید شارژ مکالمه" : "Buy Call Charges"}
+                    </a>
                   </li>
                   <li>
-                    <a href="#">لیست صورت حساب‌ها</a>
+                    <a href="#">
+                      {language.isFa ? "لیست صورت حساب‌ها" : "List of Bills"}
+                    </a>
                   </li>
                 </ul>
               ) : null}
             </li>
             <li>
-              <Link to="/chart">آمار و ارقام</Link>
+              <Link to="/chart">
+                {language.isFa ? "آمار و ارقام" : "Facts and Figures"}
+              </Link>
               <MdInsertChart
                 size={18}
                 color={theme.darkMode ? "#0068D2" : "#000"}
               />
             </li>
             <li>
-              <Link to="/whatsapp">اتصال واتساپ</Link>
+              <Link to="/whatsapp">
+                {language.isFa ? "اتصال واتساپ" : "WhatsApp Connection"}
+              </Link>
               <RiWhatsappFill
                 size={18}
                 color={theme.darkMode ? "#0068D2" : "#000"}
               />
             </li>
             <li>
-              <Link to="/team">تنظیمات تیم</Link>
+              <Link to="/team">
+                {language.isFa ? "تنظیمات تیم" : "Team Settings"}
+              </Link>
               <BsPersonVcardFill
                 size={18}
                 color={theme.darkMode ? "#0068D2" : "#000"}
               />
             </li>
             <li>
-              <Link to="/group-chat">پیام گروهی</Link>
+              <Link to="/group-chat">
+                {language.isFa ? "پیام گروهی" : "Group Message"}
+              </Link>
               <BsFillSendFill
                 size={18}
                 color={theme.darkMode ? "#0068D2" : "#000"}
               />
             </li>
             <li>
-              <Link to="/web-hook">وب هوک</Link>
+              <Link to="/web-hook">{language.isFa ? "وب هوک" : "Webhook"}</Link>
               <TbFishHook
                 size={18}
                 color={theme.darkMode ? "#0068D2" : "#000"}
@@ -158,7 +184,9 @@ const Sidebar: FC = () => {
         >
           <ul>
             <li>
-              <Link to="/setting">تنظیمات رایچت</Link>
+              <Link to="/setting">
+                {language.isFa ? "تنظیمات رایچت" : "Raychat Settings"}
+              </Link>
               <MdSettings
                 size={18}
                 color={theme.darkMode ? "#0068D2" : "#000"}
@@ -167,7 +195,7 @@ const Sidebar: FC = () => {
             <li className="theme-toggle">
               {!theme.darkMode ? (
                 <button onClick={ToggleTheme}>
-                  تاریک
+                  {language.isFa ? "تاریک" : "Dark"}
                   <FiMoon
                     size={18}
                     color={theme.darkMode ? "#0068D2" : "#000"}
@@ -175,7 +203,7 @@ const Sidebar: FC = () => {
                 </button>
               ) : (
                 <button onClick={ToggleTheme}>
-                  روشن
+                  {language.isFa ? "روشن" : "Light"}
                   <FiSun
                     size={18}
                     color={theme.darkMode ? "#0068D2" : "#000"}

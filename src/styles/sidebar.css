@@ -10,8 +10,14 @@
   src: url("../../public/assets/font/IranYekan/webFont/IRANYekanWebMedium.woff");
 }
 
+@font-face {
+  font-family: IRANYekan-Regular;
+  src: url("../../public/assets/font/IranYekan/webFont/IRANYekanWebRegular.ttf");
+  src: url("../../public/assets/font/IranYekan/webFont/IRANYekanWebRegular.woff");
+}
+
 .sidebar {
-  width: 16rem;
+  width: 20rem;
   height: 100vh;
   background-color: #fafafa;
   overflow: auto;
@@ -50,13 +56,13 @@
 }
 
 .sidebar .sidebar-body ul li.active a {
-  font-family: IRANYekan-Bold !important;
+  font-family: IRANYekan-Medium !important;
 }
 
 .sidebar .sidebar-body ul li a,
 .sidebar .sidebar-footer ul li a {
   text-decoration: none;
-  font-family: IRANYekan-Medium;
+  font-family: IRANYekan-Regular;
   color: #000;
   font-size: 0.8rem;
 }
@@ -79,7 +85,7 @@
 }
 
 .menu-with-submenu .submenu li a {
-  font-family: IRANYekan-Medium;
+  font-family: IIRANYekan-Regular;
   color: #909090 !important;
   font-size: 0.7rem !important;
 }
@@ -93,7 +99,7 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  font-family: IRANYekan-Bold;
+  font-family: IRANYekan-Medium;
 }
 
 /* Dark Mode */

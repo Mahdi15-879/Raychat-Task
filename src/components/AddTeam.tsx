@@ -1,7 +1,7 @@
 import React, { ReactNode, useContext } from "react";
 
 // CONTEXT
-import { ThemeContext } from "../contexts/Context";
+import { ThemeContext } from "../contexts/ThemeContext";
 
 import "../styles/team.css";
 

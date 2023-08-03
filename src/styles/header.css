@@ -31,8 +31,8 @@
 
 .header section div figure,
 .header section figure {
-  width: 25px;
-  height: 25px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
   overflow: hidden;
   cursor: pointer;

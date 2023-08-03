@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 // CONTEXT
-import { ThemeContext } from "./contexts/Context";
+import { ThemeContext } from "./contexts/ThemeContext";
 
 // COMPONENTS
 import Sidebar from "./components/Sidebar";

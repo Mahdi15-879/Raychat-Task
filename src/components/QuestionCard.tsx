@@ -1,7 +1,7 @@
 import { useContext, ReactNode, FC } from "react";
 
 // CONTEXT
-import { ThemeContext } from "../contexts/Context";
+import { ThemeContext } from "../contexts/ThemeContext";
 
 // STYLES
 import "../styles/home.css";
