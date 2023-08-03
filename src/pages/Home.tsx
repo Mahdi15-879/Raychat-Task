@@ -90,6 +90,13 @@ const Home = () => {
     console.log(isCardClicked);
   };
 
+  const handleDeleteQuestion = (id: string): void => {
+    const filteredQuestions: Iquestion[] = questions.filter(
+      (question) => question.id != id
+    );
+    setQuestions(filteredQuestions);
+  };
+
   return (
     <div className={`Home ${theme.darkMode && "Home-dark"}`}>
       <section className="Home-form">
@@ -164,6 +171,8 @@ const Home = () => {
                       <RiDeleteBin7Line
                         size={18}
                         color={theme.darkMode ? "#0068D2" : "#7e7e7e"}
+                        onClick={() => handleDeleteQuestion(question.id)}
+                        cursor={"pointer"}
                       />
                     </span>
 
@@ -183,7 +192,10 @@ const Home = () => {
                     />
                   </div>
 
-                  <button onClick={() => saveQuestionHandler(question.id)} className="QuestionCard-edit_btn">
+                  <button
+                    onClick={() => saveQuestionHandler(question.id)}
+                    className="QuestionCard-edit_btn"
+                  >
                     ذخیره
                   </button>
                 </div>
@@ -197,6 +209,8 @@ const Home = () => {
                     <RiDeleteBin7Line
                       size={18}
                       color={theme.darkMode ? "#0068D2" : "#7e7e7e"}
+                      onClick={() => handleDeleteQuestion(question.id)}
+                      cursor={"pointer"}
                     />
                   </div>
 
