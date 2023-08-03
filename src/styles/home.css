@@ -1,0 +1,105 @@
+@font-face {
+  font-family: IRANYekan-Bold;
+  src: url("../../public/assets/font/IranYekan/webFont/IRANYekanWebExtraBold.ttf");
+  src: url("../../public/assets/font/IranYekan/webFont/IRANYekanWebExtraBold.woff");
+}
+
+@font-face {
+  font-family: IRANYekan-Medium;
+  src: url("../../public/assets/font/IranYekan/webFont/IRANYekanWebMedium.ttf");
+  src: url("../../public/assets/font/IranYekan/webFont/IRANYekanWebMedium.woff");
+}
+
+@font-face {
+  font-family: IRANYekan-Regular;
+  src: url("../../public/assets/font/IranYekan/webFont/IRANYekanWebRegular.ttf");
+  src: url("../../public/assets/font/IranYekan/webFont/IRANYekanWebRegular.woff");
+}
+
+.Home {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.Home .Home-form {
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 1rem;
+  text-align: right;
+  margin-top: 2rem;
+  border-bottom: 1px solid #bbb8b865;
+  padding-bottom: 1rem;
+}
+
+.Home .Home-form h3 {
+  font-family: IRANYekan-Bold;
+}
+
+.Home .Home-form p {
+  font-family: IRANYekan-Regular;
+  font-size: 0.9rem;
+  line-height: 1.5rem;
+}
+
+.Home .Home-form form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.Home .Home-form form span {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-family: IRANYekan-Regular;
+}
+
+.Home .Home-form form span input {
+  border: 1px solid #bbb8b865;
+  outline: none;
+  padding: 0.8rem 0.5rem;
+  width: 25rem;
+  text-align: right;
+  border-radius: 8px;
+  font-family: IRANYekan-Regular;
+}
+
+.Home-dark .Home-form form span input {
+  background-color: rgb(18, 8, 77);
+  color: #fff;
+}
+
+.Home .Home-form form textarea {
+  outline: none;
+  border: 1px solid #bbb8b865;
+  border-radius: 8px;
+  text-align: right;
+  font-family: IRANYekan-Regular;
+  padding: 0.8rem 0.5rem;
+  resize: none;
+  direction: rtl;
+}
+
+.Home-dark .Home-form form textarea {
+  background-color: rgb(18, 8, 77);
+  color: #fff;
+}
+
+.Home .Home-form form button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: #8c2c7f;
+  color: #fff;
+  font-family: IRANYekan-Regular;
+  border: none;
+  border-radius: 8px;
+  padding: 0.7rem 1rem;
+  cursor: pointer;
+}

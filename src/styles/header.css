@@ -5,6 +5,7 @@
 }
 
 .header {
+  z-index: 10000;
   width: 100%;
   background-color: #fafafa;
   padding: 1rem 1.5rem 1rem 1.5rem;
