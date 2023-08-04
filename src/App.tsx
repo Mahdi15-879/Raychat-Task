@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 // CONTEXT
@@ -26,12 +26,33 @@ import WhatsApp from "./pages/WhatsApp";
 import "./styles/app.css";
 
 const App: React.FC = () => {
+  const [screenSize, setScreenSize] = useState(getCurrentDimension());
   const { theme } = useContext(ThemeContext);
+
+  useEffect(() => {
+    const updateDimension = () => {
+      setScreenSize(getCurrentDimension());
+    };
+    window.addEventListener("resize", updateDimension);
+
+    return () => {
+      window.removeEventListener("resize", updateDimension);
+    };
+  }, [screenSize]);
+
+  useEffect(() => {
+    const bodyElement = document.getElementById("app-body");
+
+    if (bodyElement) {
+      bodyElement.setAttribute("data-theme", theme.darkMode ? "dark" : "light");
+    }
+  }, [theme.darkMode]);
+
   return (
     <div className={`App ${theme.darkMode ? "App-dark" : "App-light"}`}>
       <Header />
       <main>
-        <Sidebar />
+        {screenSize.width >= 992 && <Sidebar />}
         <div className="container">
           <Routes>
             <Route path="/" element={<Home />} />
@@ -56,3 +77,10 @@ const App: React.FC = () => {
 };
 
 export default App;
+
+function getCurrentDimension() {
+  return {
+    width: window.innerWidth,
+    height: window.innerHeight,
+  };
+}
