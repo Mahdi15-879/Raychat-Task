@@ -393,7 +393,7 @@ const Team: FC = () => {
 
         <section className="Btn-container">
           <button onClick={clickEditHandler}>
-            {language.isFa ? "تایید" : "Confirmation"}
+            {language.isFa ? "تایید" : "Save"}
           </button>
 
           <button onClick={() => setEditModalOpen(false)}>
