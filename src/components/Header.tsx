@@ -76,10 +76,12 @@ const Header = () => {
           </figure>
         </div>
 
-        <BiSolidBellRing
-          size={18}
-          color={theme.darkMode ? "#0068D2" : "#000"}
-        />
+        {screenSize.width >= 668 && (
+          <BiSolidBellRing
+            size={18}
+            color={theme.darkMode ? "#0068D2" : "#000"}
+          />
+        )}
 
         <figure
           onClick={langHandler}

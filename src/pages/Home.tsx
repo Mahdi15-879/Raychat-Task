@@ -147,8 +147,7 @@ const Home = () => {
 
           <textarea
             id="question-holder"
-            cols={110}
-            rows={12}
+            rows={10}
             value={questionDesc}
             onChange={(e) => setQuestionDesc(e.target.value)}
             placeholder={language.isFa ? "توضیحات" : "Description"}

@@ -233,3 +233,23 @@
   grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
   gap: 1.5rem;
 }
+
+/* Media Queries */
+
+@media only screen and (max-width: 1070px) {
+  .Team .Team-body select {
+    width: 35%;
+  }
+}
+
+@media only screen and (max-width: 992px) {
+  .Team .Team-body select {
+    width: 45%;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .Team .Team-body select {
+    width: 80%;
+  }
+}

@@ -4,6 +4,12 @@
   src: url("../../public/assets/font/IranYekan/webFont/IRANYekanWebMedium.woff");
 }
 
+@font-face {
+  font-family: IRANYekan-Regular;
+  src: url("../../public/assets/font/IranYekan/webFont/IRANYekanWebRegular.ttf");
+  src: url("../../public/assets/font/IranYekan/webFont/IRANYekanWebRegular.woff");
+}
+
 .header {
   z-index: 10000;
   width: 100%;
@@ -45,12 +51,32 @@
 }
 
 .header .Logo {
-display: flex;
-align-items: center;
-gap: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 }
 
 /* Dark Mode */
 .header-dark {
   background-color: rgb(18, 8, 77);
+}
+
+/* Media Queries */
+
+@media only screen and (max-width: 768px) {
+  .header section {
+    gap: 1rem;
+  }
+
+  .header section div {
+    gap: 0.5rem;
+    font-size: 0.8rem;
+    font-family: IRANYekan-Regular;
+  }
+
+  .header section div figure,
+  .header section figure {
+    width: 25px;
+    height: 25px;
+  }
 }

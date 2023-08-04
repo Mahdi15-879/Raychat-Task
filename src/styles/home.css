@@ -36,7 +36,7 @@
 }
 
 .Home .Home-form h3 {
-  font-family: IRANYekan-Bold;
+  font-family: IRANYekan-Medium;
 }
 
 .Home .Home-form p {
@@ -51,6 +51,7 @@
   align-items: flex-end;
   gap: 1rem;
   margin-top: 1rem;
+  width: 100%;
 }
 
 .Home .Home-form form span {
@@ -84,6 +85,7 @@
   padding: 0.8rem 0.5rem;
   resize: none;
   direction: rtl;
+  width: 80%;
 }
 
 .Home-dark .Home-form form textarea {
@@ -247,4 +249,13 @@
   padding: 0.7rem 1rem;
   cursor: pointer;
   color: #fff;
+}
+
+/* Media Queries */
+@media only screen and (max-width: 768px) {
+  .Home .Home-form form span,
+  .Home .Home-form form span input,
+  .Home .Home-form form textarea {
+    width: 100%;
+  }
 }
