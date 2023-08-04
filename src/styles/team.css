@@ -246,10 +246,18 @@
   .Team .Team-body select {
     width: 45%;
   }
+
+  .Team .AddTeam-Modal div {
+    width: 80%;
+  }
 }
 
 @media only screen and (max-width: 768px) {
   .Team .Team-body select {
     width: 80%;
+  }
+
+  .Team .AddTeam-Modal div {
+    width: 95%;
   }
 }
