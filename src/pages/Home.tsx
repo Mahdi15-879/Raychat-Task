@@ -31,7 +31,13 @@ const Home = () => {
   const [checked, setChecked] = useState(false);
   const [questionTitle, setQuestionTitle] = useState<string>("");
   const [questionDesc, setQuestionDesc] = useState<string>("");
-  const [questions, setQuestions] = useState<Iquestion[]>([]);
+  const [questions, setQuestions] = useState<Iquestion[]>([
+    {
+      id: uuidv4(),
+      questionTitle: "سوال تست",
+      questionDesc: "توضیحات سوال تست.",
+    },
+  ]);
 
   const [isCardClicked, setIsCardClicked] = useState<boolean>(true);
   const [isClickedID, setIsClickedID] = useState<string>("");
