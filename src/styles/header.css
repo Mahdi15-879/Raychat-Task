@@ -44,6 +44,12 @@
   height: 100%;
 }
 
+.header .Logo {
+display: flex;
+align-items: center;
+gap: 1rem;
+}
+
 /* Dark Mode */
 .header-dark {
   background-color: rgb(18, 8, 77);

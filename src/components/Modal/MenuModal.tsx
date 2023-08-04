@@ -1,12 +1,12 @@
-import { useState, useContext, FC } from "react";
+import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 
-// STYLES
-import "../styles/sidebar.css";
-
 // CONTEXT
-import { ThemeContext } from "../contexts/ThemeContext";
-import { LanguageContext } from "../contexts/LanguageContext";
+import { ThemeContext } from "../../contexts/ThemeContext";
+import { LanguageContext } from "../../contexts/LanguageContext";
+
+// STYLES
+import "../../styles/menu-modal.css";
 
 // ICONS
 import {
@@ -23,7 +23,12 @@ import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import { BiSolidShoppingBagAlt } from "react-icons/bi";
 import { FiSun, FiMoon } from "react-icons/fi";
 
-const Sidebar: FC = () => {
+interface ModalProps {
+  showModal: boolean;
+  onClose: () => void;
+}
+
+const Modal: React.FC<ModalProps> = ({ showModal, onClose }) => {
   const [isSubMenuOpen, setIsSubMenuOpen] = useState<boolean>(false);
 
   const { theme, setTheme } = useContext(ThemeContext);
@@ -42,13 +47,17 @@ const Sidebar: FC = () => {
   };
 
   return (
-    <div className={`sidebar ${theme.darkMode && "sidebar-dark"}`}>
-      <div className="sidebar-container">
-        <div
-          className={`sidebar-body ${theme.darkMode && "sidebar-body_dark"}`}
-        >
+    <div
+      className={`modal ${showModal && "show"} ${
+        theme.darkMode && "modal-dark"
+      }`}
+    >
+      <div
+        className={`modal-content ${theme.darkMode && "modal-content_dark"}`}
+      >
+        <div className={`menu-body ${theme.darkMode && "menu-body_dark"}`}>
           <ul>
-            <li className="active">
+            <li>
               <Link to="/">{language.isFa ? "داشبورد" : "Dashboard"}</Link>
               <RiHome6Fill size={18} color="#841474" />
             </li>
@@ -177,11 +186,7 @@ const Sidebar: FC = () => {
           </ul>
         </div>
 
-        <div
-          className={`sidebar-footer ${
-            theme.darkMode && "sidebar-footer_dark"
-          }`}
-        >
+        <div className={`menu-footer ${theme.darkMode && "menu-footer_dark"}`}>
           <ul>
             <li>
               <Link to="/setting">
@@ -213,9 +218,13 @@ const Sidebar: FC = () => {
             </li>
           </ul>
         </div>
+
+        <button className="close-btn" onClick={onClose}>
+          {language.isFa ? "بستن" : "Close"}
+        </button>
       </div>
     </div>
   );
 };
 
-export default Sidebar;
+export default Modal;
